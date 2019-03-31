@@ -4,7 +4,7 @@ import { GetSuggestionsDto } from './dto/GetSuggestionsDto'
 import { map } from 'rxjs/operators';
 
 @Injectable()
-export class CoreLogicService {
+export class CorelogicService {
 
   authUrl: string
   clientId: string

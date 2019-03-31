@@ -1,9 +1,9 @@
 import { Module, HttpModule } from '@nestjs/common';
-import { CoreLogicService } from './corelogic.service';
+import { CorelogicService } from './corelogic.service';
 
 @Module({
   imports: [HttpModule],
-  providers: [CoreLogicService],
-  exports: [CoreLogicService]
+  providers: [CorelogicService],
+  exports: [CorelogicService]
 })
-export class CoreLogicModule {}
+export class CorelogicModule {}
