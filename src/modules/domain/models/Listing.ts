@@ -1,3 +1,5 @@
+import { formatPrice } from "../domain.utils";
+
 export class Listing {
   id: number
   address: {
@@ -17,10 +19,11 @@ export class Listing {
     bathrooms: number
     carspaces: number
   }
-  price: number
+  priceUnformatted: number
+  price: string
   image: string
 
-  constructor (listingResponse: any) {
+  constructor(listingResponse: any) {
     this.address = {
       unitNumber: listingResponse.propertyDetails.unitNumber,
       streetNumber: listingResponse.propertyDetails.streetNumber,
@@ -38,8 +41,11 @@ export class Listing {
       lat: listingResponse.propertyDetails.latitude,
       lng: listingResponse.propertyDetails.longitude
     }
-    this.price = listingResponse.priceDetails.displayPrice
-    this.image = listingResponse.media && listingResponse.media[0].url || 'https://static.dezeen.com/uploads/2018/09/be-landa-29-design-crazy-rich-asians-residence-kuala-lumpur-stephanie-maignon_dezeen_hero-1024x576.jpg'
+    this.priceUnformatted = listingResponse.priceDetails.displayPrice
+    this.price = formatPrice(listingResponse.priceDetails.displayPrice)
+    this.image =
+      (listingResponse.media && listingResponse.media[0].url) ||
+      'https://static.dezeen.com/uploads/2018/09/be-landa-29-design-crazy-rich-asians-residence-kuala-lumpur-stephanie-maignon_dezeen_hero-1024x576.jpg'
     this.id = listingResponse.id
   }
 }

@@ -6,8 +6,6 @@ import { DomainModule } from 'src/modules/domain/domain.module'
 @Module({
   controllers: [ListingsController],
   providers: [ListingsService],
-  imports: [
-    DomainModule
-  ]
+  imports: [DomainModule]
 })
 export class ListingsModule {}

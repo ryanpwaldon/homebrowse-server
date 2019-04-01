@@ -3,8 +3,8 @@ import { ConfigService } from 'src/modules/config/config.service'
 import { GetSuburbPerformanceStatisticsDto } from './dto/GetSuburbPerformanceStatistics.dto'
 import { PostListingsResidentialSearchDto } from './dto/PostListingsResidentialSearchDto'
 import { map } from 'rxjs/operators'
+import { extractListings } from './domain.utils'
 import * as querystring from 'querystring'
-import { extractListings } from './domain.utils';
 
 @Injectable()
 export class DomainService {
@@ -15,25 +15,20 @@ export class DomainService {
   accessToken: string
   accessTokenExpiry: number
 
-  constructor(
-    config: ConfigService,
-    private readonly http: HttpService
-  ) {
+  constructor(config: ConfigService, private readonly http: HttpService) {
     this.baseUrl = config.get('DOMAIN_URL_BASE')
     this.authUrl = config.get('DOMAIN_URL_AUTH')
     this.clientId = config.get('DOMAIN_AGENTS_LISTINGS_ID')
     this.clientSecret = config.get('DOMAIN_AGENTS_LISTINGS_SECRET')
   }
 
-  auth() {
-    const body = querystring.stringify({
-      grant_type: 'client_credentials',
-      scope: 'api_listings_read'
-    })
-    return this.http
-      .post(this.authUrl, body, {
+  async auth() {
+    if (this.accessToken && Date.now() < this.accessTokenExpiry) return
+    const data = querystring.stringify({ grant_type: 'client_credentials', scope: 'api_listings_read' })
+    return await this.http
+      .post(this.authUrl, data, {
         headers: {
-          Authorization: 'Basic ' + Buffer.from(`${this.clientId}:${this.clientSecret}`).toString('base64'),
+          Authorization: `Basic ${Buffer.from(`${this.clientId}:${this.clientSecret}`).toString('base64')}`,
           'Content-Type': 'application/x-www-form-urlencoded'
         }
       })
@@ -42,13 +37,11 @@ export class DomainService {
         this.accessToken = response.data.access_token
         this.accessTokenExpiry = Date.now() + response.data.expires_in * 1000
       })
-      .catch(error => console.error(error))
+      .catch(error => console.log(error))
   }
 
   async getSuburbPerformanceStatistics(query: GetSuburbPerformanceStatisticsDto) {
-    if (!this.accessToken || Date.now() >= this.accessTokenExpiry) {
-      await this.auth()
-    }
+    await this.auth()
     this.http
       .get(`${this.baseUrl}/suburbPerformanceStatistics`, {
         params: query,
@@ -56,16 +49,11 @@ export class DomainService {
           Authorization: `Bearer ${this.accessToken}`
         }
       })
-      .subscribe(
-        response => console.log(response),
-        error => console.error(error)
-      )
+      .subscribe(response => console.log(response), error => console.error(error))
   }
 
   async postListingsResidentialSearch(body: PostListingsResidentialSearchDto) {
-    if (!this.accessToken || Date.now() >= this.accessTokenExpiry) {
-      await this.auth()
-    }
+    await this.auth()
     return this.http
       .post(`${this.baseUrl}/listings/residential/_search`, body, {
         params: body,
@@ -73,21 +61,17 @@ export class DomainService {
           Authorization: `Bearer ${this.accessToken}`
         }
       })
-      .pipe(map(response => response.data))
+      .pipe(map(response => extractListings(response.data)))
   }
 
   async getListingsResidentialSearch(id: number) {
-    if (!this.accessToken || Date.now() >= this.accessTokenExpiry) {
-      await this.auth()
-    }
+    await this.auth()
     return this.http
       .get(`${this.baseUrl}/listings/${id}`, {
         headers: {
           Authorization: `Bearer ${this.accessToken}`
         }
       })
-      .pipe(map(response => {
-        return response.data
-      }))
+      .pipe(map(response => response.data))
   }
 }
