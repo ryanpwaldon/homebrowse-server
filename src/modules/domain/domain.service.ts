@@ -1,7 +1,7 @@
 import { Injectable, HttpService } from '@nestjs/common'
 import { ConfigService } from 'src/modules/config/config.service'
-import { GetSuburbPerformanceStatisticsDto } from './dto/GetSuburbPerformanceStatistics.dto'
-import { PostListingsResidentialSearchDto } from './dto/PostListingsResidentialSearchDto'
+import { FindSuburbStatisticsDto } from './dto/FindSuburbStatistics.dto'
+import { FindListingsDto } from './dto/FindListings.dto'
 import { map } from 'rxjs/operators'
 import { extractListings } from './domain.utils'
 import * as querystring from 'querystring'
@@ -34,13 +34,14 @@ export class DomainService {
       })
       .toPromise()
       .then(response => {
+        console.dir(HttpService)
         this.accessToken = response.data.access_token
         this.accessTokenExpiry = Date.now() + response.data.expires_in * 1000
       })
       .catch(error => console.log(error))
   }
 
-  async getSuburbPerformanceStatistics(query: GetSuburbPerformanceStatisticsDto) {
+  async findSuburbStatistics(query: FindSuburbStatisticsDto) {
     await this.auth()
     this.http
       .get(`${this.baseUrl}/suburbPerformanceStatistics`, {
@@ -52,11 +53,10 @@ export class DomainService {
       .subscribe(response => console.log(response), error => console.error(error))
   }
 
-  async postListingsResidentialSearch(body: PostListingsResidentialSearchDto) {
+  async findListings(body: FindListingsDto) {
     await this.auth()
     return this.http
       .post(`${this.baseUrl}/listings/residential/_search`, body, {
-        params: body,
         headers: {
           Authorization: `Bearer ${this.accessToken}`
         }
@@ -64,7 +64,7 @@ export class DomainService {
       .pipe(map(response => extractListings(response.data)))
   }
 
-  async getListingsResidentialSearch(id: number) {
+  async findListing(id: number) {
     await this.auth()
     return this.http
       .get(`${this.baseUrl}/listings/${id}`, {

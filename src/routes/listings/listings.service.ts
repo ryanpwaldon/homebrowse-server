@@ -6,10 +6,11 @@ export class ListingsService {
   constructor(private readonly domainService: DomainService) {}
 
   findAll(query) {
-    return this.domainService.postListingsResidentialSearch(query)
+    return this.domainService.findListings(query)
   }
 
   findOne(id) {
-    return this.domainService.getListingsResidentialSearch(id)
+    return this.domainService.findListing(id)
   }
+
 }

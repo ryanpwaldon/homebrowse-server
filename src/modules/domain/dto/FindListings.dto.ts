@@ -1,4 +1,4 @@
-export class PostListingsResidentialSearchDto {
+export class FindListingsDto {
   listingType?: 'Sale' | 'Rent' | 'Share' | 'Sold' | 'NewHomes'
   propertyTypes?: Array<string>
   propertyFeatures?: Array<string>

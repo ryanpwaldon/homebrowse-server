@@ -1,4 +1,4 @@
-export class GetSuburbPerformanceStatisticsDto {
+export class FindSuburbStatisticsDto {
   readonly state: string
   readonly suburbId: number
   readonly propertyCategory: string
