@@ -34,7 +34,6 @@ export class DomainService {
       })
       .toPromise()
       .then(response => {
-        console.dir(HttpService)
         this.accessToken = response.data.access_token
         this.accessTokenExpiry = Date.now() + response.data.expires_in * 1000
       })
@@ -54,6 +53,7 @@ export class DomainService {
   }
 
   async findListings(body: FindListingsDto) {
+    console.log(body)
     await this.auth()
     return this.http
       .post(`${this.baseUrl}/listings/residential/_search`, body, {
