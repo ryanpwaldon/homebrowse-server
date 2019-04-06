@@ -6,12 +6,12 @@ export class ListingsController {
   constructor(private readonly listingsService: ListingsService) {}
 
   @Get()
-  async findAll(@Query() query) {
-    return await this.listingsService.findAll(query)
+  findAll(@Query() query) {
+    return this.listingsService.findAll(query)
   }
 
   @Get(':id')
-  async findOne(@Param('id') id) {
-    return await this.listingsService.findOne(id)
+  findOne(@Param('id') id) {
+    return this.listingsService.findOne(id)
   }
 }

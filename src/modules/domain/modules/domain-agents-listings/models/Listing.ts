@@ -1,4 +1,4 @@
-import { formatPrice } from "../domain.utils";
+import { formatPrice } from "../domain-agents-listings.utils";
 
 export class Listing {
   id: number

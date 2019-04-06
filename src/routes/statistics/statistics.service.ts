@@ -6,6 +6,6 @@ export class StatisticsService {
   constructor(private readonly domainService: DomainService) {}
 
   getSuburbStatistics(query) {
-    this.domainService.findSuburbStatistics(query)
+    return this.domainService.findSuburbStatistics(query)
   }
 }

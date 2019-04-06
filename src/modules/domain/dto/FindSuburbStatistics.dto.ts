@@ -1,10 +1,11 @@
 export class FindSuburbStatisticsDto {
-  readonly state: string
-  readonly suburbId: number
-  readonly propertyCategory: string
-  readonly chronologicalSpan: number
-  readonly tPlusFrom: number
-  readonly tPlusTo: number
-  readonly bedrooms: string
-  readonly values: string
+  suburb: string
+  state: string
+  postCode: string
+  propertyCategory: string
+  chronologicalSpan: number
+  tPlusFrom: number
+  tPlusTo: number
+  values: string
+  bedrooms?: string
 }
