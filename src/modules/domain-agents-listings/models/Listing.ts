@@ -18,7 +18,6 @@ export class Listing {
   image: string
 
   constructor(response: any) {
-    console.log(response)
     this.unitNumber = response.propertyDetails.unitNumber
     this.streetNumber = response.propertyDetails.streetNumber
     this.street = response.propertyDetails.street
