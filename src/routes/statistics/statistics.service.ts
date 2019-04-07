@@ -1,11 +1,14 @@
 import { Injectable } from '@nestjs/common'
-import { DomainService } from 'src/modules/domain/domain.service'
+import { DomainPropertiesLocationsService } from 'src/modules/domain-properties-locations/domain-properties-locations.service';
 
 @Injectable()
 export class StatisticsService {
-  constructor(private readonly domainService: DomainService) {}
+  constructor(
+    private readonly domainPropertiesLocationsService: DomainPropertiesLocationsService
+  ) {}
 
-  getSuburbStatistics(query) {
-    return this.domainService.findSuburbStatistics(query)
+  async findSuburbStatistics(query) {
+    query.suburbId = await this.domainPropertiesLocationsService.addressLocators(query)
+    return this.domainPropertiesLocationsService.suburbPerformanceStatistics(query)
   }
 }

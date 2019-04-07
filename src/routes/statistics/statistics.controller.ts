@@ -5,7 +5,7 @@ export class StatisticsController {
   constructor(private readonly statisticsService: StatisticsService) {}
 
   @Get()
-  suburbStatistics(@Query() query) {
-    return this.statisticsService.getSuburbStatistics(query)
+  findSuburbStatistics(@Query() query) {
+    return this.statisticsService.findSuburbStatistics(query)
   }
 }

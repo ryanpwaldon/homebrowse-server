@@ -1,11 +1,10 @@
 import { Module } from '@nestjs/common'
 import { StatisticsController } from './statistics.controller'
 import { StatisticsService } from './statistics.service'
-import { DomainModule } from 'src/modules/domain/domain.module'
-
+import { DomainPropertiesLocationsModule } from 'src/modules/domain-properties-locations/domain-properties-locations.module';
 @Module({
   controllers: [StatisticsController],
   providers: [StatisticsService],
-  imports: [DomainModule]
+  imports: [DomainPropertiesLocationsModule]
 })
 export class StatisticsModule {}
