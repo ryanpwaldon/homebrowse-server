@@ -1,7 +1,7 @@
 export class SuburbPerformanceStatisticsDto {
   suburbId: string
   state: string
-  propertyCategory: string
+  propertyCategory: string = 'house'
   chronologicalSpan: number = 12
   tPlusFrom: number = 1
   tPlusTo: number = 1
