@@ -1,6 +1,6 @@
-import { formatPrice } from "../domain-agents-listings.utils";
+import { formatPrice } from '../listings.utils'
 
-export class Listing {
+export class ListingsResidentialSearchDto {
   id: number
   unitNumber: string
   streetNumber: string
@@ -31,7 +31,7 @@ export class Listing {
     this.lng = response.propertyDetails.longitude
     this.priceUnformatted = response.priceDetails.displayPrice
     this.price = formatPrice(response.priceDetails.displayPrice)
-    this.image = response.media && response.media[0].url || 'https://images.unsplash.com/photo-1501580121338-18e859f87400'
+    this.image = (response.media && response.media[0].url) || 'https://images.unsplash.com/photo-1501580121338-18e859f87400'
     this.id = response.id
   }
 }

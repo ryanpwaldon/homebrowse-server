@@ -1,14 +1,14 @@
 import * as numeral from 'numeral'
-import { Listing } from './models/Listing'
+import { ListingsResidentialSearchDto } from './dto/ListingsResidentialSearchDto'
 
-export const extractListings = listingsSearchResponse => {
+export const extractListings = response => {
   const listings = []
-  for (let result of listingsSearchResponse) {
+  for (let result of response) {
     if (result.listing) {
-      listings.push(new Listing(result.listing))
+      listings.push(new ListingsResidentialSearchDto(result.listing))
     } else if (result.listings) {
       result.listings.forEach(listing => {
-        listings.push(new Listing(listing))
+        listings.push(new ListingsResidentialSearchDto(listing))
       })
     }
   }

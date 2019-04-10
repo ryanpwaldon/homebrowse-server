@@ -2,7 +2,6 @@ import { Injectable } from '@nestjs/common'
 import { ConfigService } from 'src/config/config.service'
 
 import axios from 'axios'
-import { extractListings } from './domain-agents-listings.utils'
 import * as querystring from 'querystring'
 
 @Injectable()
@@ -21,20 +20,20 @@ export class DomainAgentsListingsService {
     this.clientSecret = config.get('DOMAIN_AGENTS_LISTINGS_SECRET')
   }
 
-  async axiosInstance () {
+  async axiosInstance() {
     await this.auth()
     return axios.create({
       baseURL: this.baseUrl,
-      headers: { 'Authorization': `Bearer ${this.accessToken}` }
+      headers: { Authorization: `Bearer ${this.accessToken}` }
     })
   }
 
-  async auth () {
+  async auth() {
     if (this.accessToken && Date.now() < this.accessTokenExpiry) return
     const data = querystring.stringify({ grant_type: 'client_credentials', scope: 'api_listings_read' })
     const response = await axios.post(this.authUrl, data, {
       headers: {
-        'Authorization': `Basic ${Buffer.from(`${this.clientId}:${this.clientSecret}`).toString('base64')}`,
+        Authorization: `Basic ${Buffer.from(`${this.clientId}:${this.clientSecret}`).toString('base64')}`,
         'Content-Type': 'application/x-www-form-urlencoded'
       }
     })
@@ -42,15 +41,11 @@ export class DomainAgentsListingsService {
     this.accessTokenExpiry = Date.now() + response.data.expires_in * 1000
   }
 
-  async findListingsResidentialSearch(query) {
-    return (await this.axiosInstance())
-      .post('/listings/residential/_search', query)
-      .then(response => extractListings(response.data))
+  async listingsResidentialSearch(query) {
+    return (await this.axiosInstance()).post('/listings/residential/_search', query).then(response => response.data)
   }
 
-  async findListing(id: number) {
-    return (await this.axiosInstance())
-      .get(`/listings/${id}`)
-      .then(response => response.data)
+  async listing(id) {
+    return (await this.axiosInstance()).get(`/listings/${id}`).then(response => response.data)
   }
 }
