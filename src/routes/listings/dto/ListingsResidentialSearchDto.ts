@@ -23,7 +23,7 @@ export class ListingsResidentialSearchDto {
     this.street = response.propertyDetails.street
     this.suburb = response.propertyDetails.suburb
     this.state = response.propertyDetails.state
-    this.postcode = response.propertyDetails.postcod
+    this.postcode = response.propertyDetails.postcode
     this.bedrooms = response.propertyDetails.bedrooms || 0
     this.bathrooms = response.propertyDetails.bathrooms || 0
     this.carspaces = response.propertyDetails.carspaces || 0
@@ -31,7 +31,7 @@ export class ListingsResidentialSearchDto {
     this.lng = response.propertyDetails.longitude
     this.priceUnformatted = response.priceDetails.displayPrice
     this.price = formatPrice(response.priceDetails.displayPrice)
-    this.image = (response.media && response.media[0].url) || 'https://images.unsplash.com/photo-1501580121338-18e859f87400'
+    this.image = (response.media && response.media[0].url) + '/400x300' || 'https://images.unsplash.com/photo-1501580121338-18e859f87400'
     this.id = response.id
   }
 }

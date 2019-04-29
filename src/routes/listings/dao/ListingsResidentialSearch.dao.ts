@@ -10,7 +10,7 @@ export class ListingsResidentialSearchDao {
   pageSize: number = 20
 
   constructor (query) {
-    this.locations = [new Location(query.location)]
+    this.locations = [new Location(query.suburb)]
     this.minBedrooms = (mapFeatures[query.bedrooms] && mapFeatures[query.bedrooms].min) || undefined
     this.maxBedrooms = (mapFeatures[query.bedrooms] && mapFeatures[query.bedrooms].max) || undefined
     this.minBathrooms = (mapFeatures[query.bathrooms] && mapFeatures[query.bathrooms].min) || undefined
@@ -26,7 +26,7 @@ class Location {
   state: string
   postCode: string
   constructor (query) {
-    this.suburb = query.suburb
+    this.suburb = query.name
     this.state = query.state
     this.postCode = query.postCode
   }

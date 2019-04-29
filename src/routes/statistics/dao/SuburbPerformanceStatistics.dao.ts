@@ -1,15 +1,15 @@
 export class SuburbPerformanceStatisticsDao {
   suburbId: string
   state: string
-  propertyCategory: string = 'house'
-  chronologicalSpan: number = 12
+  propertyCategory: string
+  chronologicalSpan: number = 3
   tPlusFrom: number = 1
   tPlusTo: number = 1
   bedrooms: string
 
   constructor(query) {
     this.suburbId = query.suburbId
-    this.state = query.location.state
+    this.state = query.suburb.state
     this.bedrooms = mapFeatures[query.bedrooms] || undefined
   }
 }

@@ -23,5 +23,5 @@ export const formatPrice = value => {
   if (typeof value === 'number') {
     return value.toString()
   }
-  return '-'
+  return ''
 }
