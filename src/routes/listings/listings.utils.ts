@@ -1,5 +1,5 @@
 import * as numeral from 'numeral'
-import { ListingsResidentialSearchDto } from './dto/ListingsResidentialSearchDto'
+import { ListingsResidentialSearchDto } from './dto/ListingsResidentialSearch.dto'
 
 export const extractListings = response => {
   const listings = []

@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common'
 import { DomainPropertiesLocationsService } from 'src/modules/domain-properties-locations/domain-properties-locations.service';
 import { AddressLocatorsDao } from './dao/AddressLocators.dao';
 import { SuburbPerformanceStatisticsDao } from './dao/SuburbPerformanceStatistics.dao';
-import { SuburbStatistics } from './models/SuburbStatistics';
+import { SuburbStatisticsDto } from './dto/SuburbStatistics.dto';
 
 @Injectable()
 export class StatisticsService {
@@ -20,6 +20,6 @@ export class StatisticsService {
     const suburbPerformanceStatisticsResponse = await this
       .domainPropertiesLocationsService
       .suburbPerformanceStatistics(new SuburbPerformanceStatisticsDao({ ...query, suburbId }))
-    return new SuburbStatistics(suburbPerformanceStatisticsResponse)
+    return new SuburbStatisticsDto(suburbPerformanceStatisticsResponse)
   }
 }

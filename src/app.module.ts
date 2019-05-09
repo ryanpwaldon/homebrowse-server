@@ -7,7 +7,14 @@ import { DomainPropertiesLocationsModule } from './modules/domain-properties-loc
 import { ListingsModule } from './routes/listings/listings.module'
 
 @Module({
-  imports: [ConfigModule, StatisticsModule, UserModule, DomainAgentsListingsModule, DomainPropertiesLocationsModule, ListingsModule],
+  imports: [
+    ConfigModule,
+    StatisticsModule,
+    UserModule,
+    DomainAgentsListingsModule,
+    DomainPropertiesLocationsModule,
+    ListingsModule
+  ],
   controllers: [],
   providers: []
 })

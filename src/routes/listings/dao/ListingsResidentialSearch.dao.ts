@@ -17,7 +17,7 @@ export class ListingsResidentialSearchDao {
     this.maxBathrooms = (mapFeatures[query.bathrooms] && mapFeatures[query.bathrooms].max) || undefined
     this.minCarspaces = (mapFeatures[query.carspaces] && mapFeatures[query.carspaces].min) || undefined
     this.maxCarspaces = (mapFeatures[query.carspaces] && mapFeatures[query.carspaces].max) || undefined
-    this.listingType = mapListingType[query.listingType]
+    this.listingType = mapListingType[query.propertyType]
   }
 }
 
