@@ -8,6 +8,7 @@ export class ListingsResidentialSearchDao {
   maxCarspaces: number
   listingType: string
   pageSize: number = 20
+  page: number
 
   constructor (query) {
     this.locations = [new Location(query.suburb)]
@@ -18,6 +19,7 @@ export class ListingsResidentialSearchDao {
     this.minCarspaces = (mapFeatures[query.carspaces] && mapFeatures[query.carspaces].min) || undefined
     this.maxCarspaces = (mapFeatures[query.carspaces] && mapFeatures[query.carspaces].max) || undefined
     this.listingType = mapListingType[query.propertyType]
+    this.page = query.page || 1
   }
 }
 
