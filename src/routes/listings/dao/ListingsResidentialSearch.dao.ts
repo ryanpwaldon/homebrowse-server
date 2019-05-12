@@ -9,6 +9,7 @@ export class ListingsResidentialSearchDao {
   listingType: string
   pageSize: number = 20
   page: number
+  sort: NullableSortBy
 
   constructor (query) {
     this.locations = [new Location(query.suburb)]
@@ -20,6 +21,7 @@ export class ListingsResidentialSearchDao {
     this.maxCarspaces = (mapFeatures[query.carspaces] && mapFeatures[query.carspaces].max) || undefined
     this.listingType = mapListingType[query.propertyType]
     this.page = query.page || 1
+    this.sort = new NullableSortBy({ sortKey: query.sortKey, sortDirection: query.sortDirection })
   }
 }
 
@@ -31,6 +33,16 @@ class Location {
     this.suburb = query.name
     this.state = query.state
     this.postCode = query.postCode
+  }
+}
+
+class NullableSortBy {
+  sortKey: string = 'DateUpdated'
+  direction: string = 'Descending'
+
+  constructor (query) {
+    this.sortKey = mapSortKey[query.sortKey]
+    this.direction = mapDirection[query.sortDirection]
   }
 }
 
@@ -47,4 +59,16 @@ const mapListingType = {
   'buy': 'Sale',
   'rent': 'Rent',
   'sold': 'Sold'
+}
+
+const mapSortKey = {
+  'price': 'Price',
+  'updated': 'DateUpdated',
+  'inspectionTime': 'InspectionTime',
+  'soldDate': 'SoldDate'
+}
+
+const mapDirection = {
+  'ascending': 'Ascending',
+  'descending': 'Descending'
 }
