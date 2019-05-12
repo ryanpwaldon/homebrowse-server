@@ -1,6 +1,19 @@
 import { formatPrice } from '../listings.utils'
 
 export class ListingsResidentialSearchDto {
+  listings: Listing[] = []
+  count: number
+
+  constructor (response: any) {
+    this.count = response.headers['x-total-count']
+    this.listings = response.data.map(item => {
+      if (item.listing) return new Listing(item.listing)
+      else return item.listings.map(listing => new Listing(listing))
+    }).flat()
+  }
+}
+
+export class Listing {
   id: number
   unitNumber: string
   streetNumber: string

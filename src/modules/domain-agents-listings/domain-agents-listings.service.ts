@@ -42,7 +42,7 @@ export class DomainAgentsListingsService {
   }
 
   async listingsResidentialSearch(query) {
-    return (await this.axiosInstance()).post('/listings/residential/_search', query).then(response => response.data)
+    return (await this.axiosInstance()).post('/listings/residential/_search', query)
   }
 
   async listing(id) {
