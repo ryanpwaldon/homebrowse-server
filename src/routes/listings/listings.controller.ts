@@ -5,13 +5,14 @@ import { ListingsService } from './listings.service'
 export class ListingsController {
   constructor(private readonly listingsService: ListingsService) {}
 
+  @Get(':id')
+  findOne(@Param('id') id) {
+    return this.listingsService.findOne(id)
+  }
+
   @Get()
   findAll(@Query() query) {
     return this.listingsService.findAll(query)
   }
 
-  @Get(':id')
-  findOne(@Param('id') id) {
-    return this.listingsService.findOne(id)
-  }
 }

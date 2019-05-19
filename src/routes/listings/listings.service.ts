@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common'
 import { DomainAgentsListingsService } from 'src/modules/domain-agents-listings/domain-agents-listings.service'
 import { ListingsResidentialSearchDao } from './dao/ListingsResidentialSearch.dao';
 import { ListingsResidentialSearchDto } from './dto/ListingsResidentialSearch.dto';
+import { ListingDto } from './dto/Listing.dto';
 
 @Injectable()
 export class ListingsService {
@@ -13,7 +14,8 @@ export class ListingsService {
     return new ListingsResidentialSearchDto(response)
   }
 
-  findOne(id) {
-    return this.domainAgentsListingsService.listing(id)
+  async findOne(id) {
+    const response = await this.domainAgentsListingsService.listing(id)
+    return new ListingDto(response)
   }
 }
