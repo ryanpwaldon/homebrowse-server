@@ -1,6 +1,6 @@
 import * as numeral from 'numeral'
 
-export const formatPrice = value => {
+export default function (value) {
   if (typeof value === 'string') {
     const matches = value.match(/\$(\d+(?:\.\d+)?(?:,)?)+(?:k|K|m|M)?/g)
     if (matches && matches.length === 1) return numeral(matches[0].toLowerCase()).format('$0a')

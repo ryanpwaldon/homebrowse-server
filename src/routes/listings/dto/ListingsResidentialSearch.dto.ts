@@ -1,4 +1,4 @@
-import { formatPrice } from '../listings.utils'
+import parsePrice from 'src/utils/parse-price.utils'
 
 export class ListingsResidentialSearchDto {
   listings: Listing[] = []
@@ -43,7 +43,7 @@ export class Listing {
     this.lat = response.propertyDetails.latitude
     this.lng = response.propertyDetails.longitude
     this.priceUnformatted = response.priceDetails.displayPrice
-    this.price = formatPrice(response.priceDetails.displayPrice)
+    this.price = parsePrice(response.priceDetails.displayPrice)
     this.image = (response.media && response.media[0].url) + '/400x300' || 'https://images.unsplash.com/photo-1501580121338-18e859f87400'
     this.id = response.id
   }
