@@ -21,7 +21,7 @@ export class ListingsResidentialSearchDao {
     this.maxCarspaces = (mapFeatures[query.carspaces] && mapFeatures[query.carspaces].max) || undefined
     this.listingType = mapListingType[query.propertyType]
     this.page = query.page || 1
-    this.sort = new NullableSortBy({ sortKey: query.sortKey, sortDirection: query.sortDirection })
+    this.sort = new NullableSortBy(query.sort)
   }
 }
 
@@ -40,9 +40,10 @@ class NullableSortBy {
   sortKey: string = 'DateUpdated'
   direction: string = 'Descending'
 
-  constructor (query) {
-    this.sortKey = mapSortKey[query.sortKey]
-    this.direction = mapDirection[query.sortDirection]
+  constructor (sort) {
+    const { sortKey, direction } = mapSort[sort]
+    this.sortKey = sortKey
+    this.direction = direction
   }
 }
 
@@ -61,14 +62,13 @@ const mapListingType = {
   'sold': 'Sold'
 }
 
-const mapSortKey = {
-  'price': 'Price',
-  'updated': 'DateUpdated',
-  'inspectionTime': 'InspectionTime',
-  'soldDate': 'SoldDate'
-}
-
-const mapDirection = {
-  'ascending': 'Ascending',
-  'descending': 'Descending'
+const mapSort = {
+  'updatedDescending': { sortKey: 'DateUpdated', direction: 'Descending' },
+  'updatedAscending': { sortKey: 'DateUpdated', direction: 'Ascending' },
+  'priceDescending': { sortKey: 'Price', direction: 'Descending' },
+  'priceAscending': { sortKey: 'Price', direction: 'Ascending' },
+  'soldDateDescending': { sortKey: 'SoldDate', direction: 'Descending' },
+  'soldDateAscending': { sortKey: 'SoldDate', direction: 'Ascending' },
+  'inspectionTimeDescending': { sortKey: 'InspectionTime', direction: 'Descending' },
+  'inspectionTimeAscending': { sortKey: 'InspectionTime', direction: 'Ascending' }
 }
