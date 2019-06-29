@@ -1,5 +1,6 @@
 import { Controller, Get, Query, UseInterceptors, CacheInterceptor } from '@nestjs/common'
 import { StatisticsService } from './statistics.service'
+
 @Controller('statistics')
 @UseInterceptors(CacheInterceptor)
 export class StatisticsController {
