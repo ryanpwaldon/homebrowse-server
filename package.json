@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "now-dev": "yarn start:dev",
-    "now-build": "yarn build",
+    "now-build": "start:prod",
     "build": "tsc -p tsconfig.build.json",
     "format": "prettier --write \"src/**/*.ts\"",
     "start": "NODE_ENV=development ts-node -r tsconfig-paths/register src/main.ts",
