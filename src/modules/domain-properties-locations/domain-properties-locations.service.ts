@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common'
-import { ConfigService } from 'src/config/config.service'
+import { ConfigService } from '../../config/config.service'
 
 import axios from 'axios'
 import * as querystring from 'querystring'

@@ -5,8 +5,8 @@ export class AddressLocatorsDao {
   postcode: string
 
   constructor(query) {
-    this.suburb = query.suburb.name
-    this.state = query.suburb.state
-    this.postcode = query.suburb.postCode
+    this.suburb = query.name
+    this.state = query.state
+    this.postcode = query.postcode
   }
 }

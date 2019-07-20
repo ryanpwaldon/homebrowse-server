@@ -12,7 +12,7 @@ export class ListingsResidentialSearchDao {
   sort: NullableSortBy
 
   constructor (query) {
-    this.locations = [new Location(query.suburb)]
+    this.locations = [new Location(query.name, query.state, query.postcode)]
     this.minBedrooms = (mapFeatures[query.bedrooms] && mapFeatures[query.bedrooms].min) || undefined
     this.maxBedrooms = (mapFeatures[query.bedrooms] && mapFeatures[query.bedrooms].max) || undefined
     this.minBathrooms = (mapFeatures[query.bathrooms] && mapFeatures[query.bathrooms].min) || undefined
@@ -29,10 +29,10 @@ class Location {
   suburb: string
   state: string
   postCode: string
-  constructor (query) {
-    this.suburb = query.name
-    this.state = query.state
-    this.postCode = query.postCode
+  constructor (name, state, postcode) {
+    this.suburb = name
+    this.state = state
+    this.postCode = postcode
   }
 }
 

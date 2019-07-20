@@ -9,7 +9,7 @@ export class SuburbPerformanceStatisticsDao {
 
   constructor(query) {
     this.suburbId = query.suburbId
-    this.state = query.suburb.state
+    this.state = query.state
     this.bedrooms = query.bedrooms || undefined
     this.propertyCategory = query.propertyCategory || 'house'
   }

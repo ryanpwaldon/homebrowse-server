@@ -1,15 +1,9 @@
 import * as moment from 'moment'
 
 export class SuburbStatisticsDto {
-  suburb: string
-  state: string
-  propertyCategory: string
   series: [DataPoint]
 
   constructor(response: any) {
-    this.suburb = response.header.suburb
-    this.state = response.header.state
-    this.propertyCategory = response.header.propertyCategory
     this.series = response.series.seriesInfo.map(item => new DataPoint(item))
   }
 }
@@ -35,7 +29,7 @@ export class DataPoint {
   lowestRentListingPrice: number
 
   constructor(response: any) {
-    this.date = moment(`${response.month}-${response.year}`, `M-YYYY`).format('MMM YYYY')
+    this.date = moment(`${response.month}-${response.year}`, `M-YYYY`).format('YYYY')
     this.medianSoldPrice = response.values.medianSoldPrice
     this.numberSold = response.values.numberSold
     this.highestSoldPrice = response.values.highestSoldPrice

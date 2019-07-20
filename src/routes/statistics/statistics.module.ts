@@ -2,7 +2,7 @@ import { Module, CacheModule } from '@nestjs/common'
 import * as redisStore from 'cache-manager-redis-store'
 import { StatisticsController } from './statistics.controller'
 import { StatisticsService } from './statistics.service'
-import { DomainPropertiesLocationsModule } from 'src/modules/domain-properties-locations/domain-properties-locations.module'
+import { DomainPropertiesLocationsModule } from '../../modules/domain-properties-locations/domain-properties-locations.module'
 @Module({
   controllers: [StatisticsController],
   providers: [StatisticsService],

@@ -1,4 +1,5 @@
-import parsePrice from 'src/utils/parse-price.utils'
+import parsePrice from '../../../utils/parse-price.utils'
+import formatTitleCase from '../../../utils/format-title-case'
 
 export class ListingsResidentialSearchDto {
   listings: Listing[] = []
@@ -29,12 +30,13 @@ export class Listing {
   priceUnformatted: number
   price: string
   image: string
+  displayAddress: string
 
   constructor(response: any) {
-    this.unitNumber = response.propertyDetails.unitNumber
-    this.streetNumber = response.propertyDetails.streetNumber
-    this.street = response.propertyDetails.street
-    this.suburb = response.propertyDetails.suburb
+    this.unitNumber = response.propertyDetails.unitNumber.toUpperCase()
+    this.streetNumber = response.propertyDetails.streetNumber.toUpperCase()
+    this.street = formatTitleCase(response.propertyDetails.street)
+    this.suburb = formatTitleCase(response.propertyDetails.suburb)
     this.state = response.propertyDetails.state
     this.postcode = response.propertyDetails.postcode
     this.bedrooms = response.propertyDetails.bedrooms || 0
@@ -44,7 +46,8 @@ export class Listing {
     this.lng = response.propertyDetails.longitude
     this.priceUnformatted = response.priceDetails.displayPrice
     this.price = parsePrice(response.priceDetails.displayPrice)
-    this.image = (response.media && response.media[0].url) + '/400x300' || 'https://images.unsplash.com/photo-1501580121338-18e859f87400'
+    this.image = (response.media && response.media[0].url) + '/700x600' || 'https://images.unsplash.com/photo-1501580121338-18e859f87400'
     this.id = response.id
+    this.displayAddress = `${this.unitNumber ? this.unitNumber + ' / ' : ''}${this.streetNumber} ${this.street}`
   }
 }
