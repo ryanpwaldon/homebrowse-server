@@ -17,6 +17,7 @@
   "dependencies": {
     "@nestjs/common": "^6.0.0",
     "@nestjs/core": "^6.0.0",
+    "@nestjs/microservices": "^6.5.3",
     "@nestjs/platform-express": "^6.0.0",
     "axios": "^0.18.0",
     "cache-manager": "^2.9.0",
@@ -24,6 +25,7 @@
     "dotenv": "^7.0.0",
     "moment": "^2.24.0",
     "numeral": "^2.0.6",
+    "redis": "^2.8.0",
     "reflect-metadata": "^0.1.12",
     "rimraf": "^2.6.2",
     "rxjs": "^6.3.3"

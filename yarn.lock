@@ -23,6 +23,15 @@
     optional "0.1.4"
     uuid "3.3.2"
 
+"@nestjs/microservices@^6.5.3":
+  version "6.5.3"
+  resolved "https://registry.yarnpkg.com/@nestjs/microservices/-/microservices-6.5.3.tgz#0b5cbc8e3588da6f10309508589b46c7306c0ab2"
+  integrity sha512-T9zZf61myahenI4c0qhcYnhnx49L+zL9+8W6fc+LPTarbt1HJDu6iyj6fh2BzewakwNLJRyGMJ9YCYlXhFuvlA==
+  dependencies:
+    iterare "1.2.0"
+    json-socket "0.3.0"
+    optional "0.1.4"
+
 "@nestjs/platform-express@^6.0.0":
   version "6.0.3"
   resolved "https://registry.yarnpkg.com/@nestjs/platform-express/-/platform-express-6.0.3.tgz#231cb79feb1f3d672185c37582ca55ac57cae2d0"
@@ -1349,6 +1358,11 @@ iterare@1.1.2:
   resolved "https://registry.yarnpkg.com/iterare/-/iterare-1.1.2.tgz#32e65fe03c72f727b1ae5fd002ed6a215f523ae8"
   integrity sha512-25rVYmj/dDvTR6zOa9jY1Ihd6USLa0J508Ub2iy7Aga+xu9JMbjDds2Uh03ReDGbva/YN3s3Ybi+Do0nOX6wAg==
 
+iterare@1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/iterare/-/iterare-1.2.0.tgz#7427f5ed45986e4b73e2fea903579f1117f3dd15"
+  integrity sha512-RxMV9p/UzdK0Iplnd8mVgRvNdXlsTOiuDrqMRnDi3wIhbT+JP4xDquAX9ay13R3CH72NBzQ91KWe0+C168QAyQ==
+
 js-tokens@^3.0.2:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/js-tokens/-/js-tokens-3.0.2.tgz#9866df395102130e38f7f996bceb65443209c25b"
@@ -1361,6 +1375,11 @@ js-yaml@^3.7.0:
   dependencies:
     argparse "^1.0.7"
     esprima "^4.0.0"
+
+json-socket@0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/json-socket/-/json-socket-0.3.0.tgz#f4b953c685bb8e8bd0b72438f5208d9a0799ae07"
+  integrity sha512-jc8ZbUnYIWdxERFWQKVgwSLkGSe+kyzvmYxwNaRgx/c8NNyuHes4UHnPM3LUrAFXUx1BhNJ94n1h/KCRlbvV0g==
 
 json5@^1.0.1:
   version "1.0.1"
@@ -1978,7 +1997,7 @@ redis-parser@^2.6.0:
   resolved "https://registry.yarnpkg.com/redis-parser/-/redis-parser-2.6.0.tgz#52ed09dacac108f1a631c07e9b69941e7a19504b"
   integrity sha1-Uu0J2srBCPGmMcB+m2mUHnoZUEs=
 
-redis@^2.7.1:
+redis@^2.7.1, redis@^2.8.0:
   version "2.8.0"
   resolved "https://registry.yarnpkg.com/redis/-/redis-2.8.0.tgz#202288e3f58c49f6079d97af7a10e1303ae14b02"
   integrity sha512-M1OkonEQwtRmZv4tEWF2VgpG0JWJ8Fv1PhlgT5+B+uNq2cA3Rt1Yt/ryoR+vQNOQcIEgdCdfH0jr3bDpihAw1A==
