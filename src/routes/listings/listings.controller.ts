@@ -12,7 +12,11 @@ export class ListingsController {
 
   @Get()
   findAll(@Query() query) {
-    return this.listingsService.findAll(query)
+    try {
+      return this.listingsService.findAll(query)
+    } catch (error) {
+      return error
+    }
   }
 
 }
