@@ -2,7 +2,7 @@
   "version": 2,
   "name": "hb-i-server",
   "builds": [{ "src": "package.json", "use": "@now/node" }],
-  "routes": [{ "src": "/*", "dest": "main.js" }],
+  "routes": [{ "src": "/*", "dest": "./dist/main.js" }],
   "env": {
     "DOMAIN_URL_AUTH": "https://auth.domain.com.au/v1/connect/token",
     "DOMAIN_URL_BASE": "https://api.domain.com.au/v1",
