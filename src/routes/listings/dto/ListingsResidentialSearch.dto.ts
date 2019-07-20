@@ -6,6 +6,7 @@ export class ListingsResidentialSearchDto {
   count: number
 
   constructor (response: any) {
+    console.log(response)
     this.count = response.headers['x-total-count']
     this.listings = response.data.map(item => {
       if (item.listing) return new Listing(item.listing)
