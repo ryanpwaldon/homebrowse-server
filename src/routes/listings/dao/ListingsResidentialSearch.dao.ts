@@ -6,6 +6,7 @@ export class ListingsResidentialSearchDao {
   maxBathrooms: number
   minCarspaces: number
   maxCarspaces: number
+  propertyTypes: [String]
   listingType: string
   pageSize: number = 20
   page: number
@@ -19,6 +20,7 @@ export class ListingsResidentialSearchDao {
     this.maxBathrooms = (mapFeatures[query.bathrooms] && mapFeatures[query.bathrooms].max) || undefined
     this.minCarspaces = (mapFeatures[query.carspaces] && mapFeatures[query.carspaces].min) || undefined
     this.maxCarspaces = (mapFeatures[query.carspaces] && mapFeatures[query.carspaces].max) || undefined
+    this.propertyTypes = query.propertyType && mapPropertyType[query.propertyType]
     this.listingType = mapListingType[query.listingType]
     this.page = query.page || 1
     this.sort = new NullableSortBy(query.sort)
@@ -60,6 +62,14 @@ const mapListingType = {
   'buy': 'Sale',
   'rent': 'Rent',
   'sold': 'Sold'
+}
+
+const mapPropertyType = {
+  'house': ['Duplex', 'House', 'NewHomeDesigns', 'NewHouseLand', 'SemiDetached', 'Terrace', 'Villa'],
+  'unit': ['ApartmentUnitFlat', 'BlockOfUnits', 'NewApartments', 'PentHouse', 'Studio'],
+  'townhouse': ['TownHouse'],
+  'land': ['DevelopmentSite', 'NewLand', 'VacantLand'],
+  'rural': ['AcreageSemiRural', 'Farm', 'Rural']
 }
 
 const mapSort = {
