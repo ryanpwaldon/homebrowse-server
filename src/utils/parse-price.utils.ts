@@ -1,5 +1,4 @@
 import * as numeral from 'numeral'
-import e = require('cors')
 
 export default function (value) {
   if (typeof value === 'string') {

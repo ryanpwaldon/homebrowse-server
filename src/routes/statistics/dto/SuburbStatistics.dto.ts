@@ -42,7 +42,7 @@ export class DataPoint {
     this.auctionNumberSold = response.values.auctionNumberSold
     this.auctionNumberWithdrawn = response.values.auctionNumberWithdrawn
     this.daysOnMarket = response.values.daysOnMarket
-    this.discountPercentage = response.values.discountPercentage
+    this.discountPercentage = response.values.discountPercentage && response.values.discountPercentage / 100
     this.medianRentListingPrice = response.values.medianRentListingPrice
     this.numberRentListing = response.values.numberRentListing
     this.highestRentListingPrice = response.values.highestRentListingPrice
