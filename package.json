@@ -29,6 +29,7 @@
     "class-validator": "^0.9.1",
     "dotenv": "^7.0.0",
     "moment": "^2.24.0",
+    "mongodb": "^3.3.2",
     "numeral": "^2.0.6",
     "passport": "^0.4.0",
     "passport-jwt": "^4.0.0",
