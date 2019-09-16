@@ -16,6 +16,7 @@ export class ListingsResidentialSearchDto {
 
 export class Listing {
   id: number
+  listingType: string
   unitNumber: string
   streetNumber: string
   street: string
@@ -31,8 +32,10 @@ export class Listing {
   price: string
   image: string
   displayAddress: string
+  url: string
 
   constructor(response: any) {
+    this.listingType = mapListingType[response.listingType]
     this.unitNumber = response.propertyDetails.unitNumber.toUpperCase()
     this.streetNumber = response.propertyDetails.streetNumber.toUpperCase()
     this.street = formatTitleCase(response.propertyDetails.street)
@@ -49,5 +52,12 @@ export class Listing {
     this.image = (response.media && response.media[0].url) + '/700x600' || 'https://images.unsplash.com/photo-1501580121338-18e859f87400'
     this.id = response.id
     this.displayAddress = `${this.unitNumber ? this.unitNumber + ' / ' : ''}${this.streetNumber} ${this.street}`
+    this.url = `https://www.domain.com.au/${response.listingSlug}`
   }
+}
+
+const mapListingType = {
+  'Sale': 'buy',
+  'Rent': 'rent',
+  'Sold': 'sold'
 }
