@@ -54,8 +54,8 @@ export class ListingDto {
     this.bedrooms = response.bedrooms || 0
     this.bathrooms = response.bathrooms || 0
     this.carspaces = response.carspaces || 0
-    this.lat = response.geoLocation.latitude
-    this.lng = response.geoLocation.longitude
+    this.lat = response.geoLocation && response.geoLocation.latitude
+    this.lng = response.geoLocation && response.geoLocation.longitude
     this.url = response.seoUrl
     this.description = response.description
     response.media.forEach(item => {
