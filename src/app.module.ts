@@ -1,11 +1,12 @@
 import { Module } from '@nestjs/common'
 import { ConfigModule } from './config/config.module'
-import { StatisticsModule } from './routes/statistics/statistics.module'
-import { UserModule } from './routes/user/user.module'
 import { DomainAgentsListingsModule } from './modules/domain-agents-listings/domain-agents-listings.module'
 import { DomainPropertiesLocationsModule } from './modules/domain-properties-locations/domain-properties-locations.module'
-import { ListingsModule } from './routes/listings/listings.module'
 import { AuthModule } from './routes/auth/auth.module'
+import { UserModule } from './routes/user/user.module'
+import { ListingsModule } from './routes/listings/listings.module'
+import { StatisticsModule } from './routes/statistics/statistics.module'
+import { SubscriberModule } from './routes/subscriber/subscriber.module'
 import { ConfigService } from './config/config.service'
 import { TypeOrmModule } from '@nestjs/typeorm'
 import { join } from 'path'
@@ -15,10 +16,11 @@ import { join } from 'path'
     ConfigModule,
     DomainAgentsListingsModule,
     DomainPropertiesLocationsModule,
+    AuthModule,
+    UserModule,
     ListingsModule,
     StatisticsModule,
-    UserModule,
-    AuthModule,
+    SubscriberModule,
     TypeOrmModule.forRootAsync({
       useFactory: (configService: ConfigService) => ({
         type: 'mongodb',
