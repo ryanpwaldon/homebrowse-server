@@ -2,6 +2,9 @@
   "name": "homebrowse-i-server",
   "version": "0.0.1",
   "license": "MIT",
+  "engines": {
+    "node": "11.12.0"
+  },
   "scripts": {
     "start": "node dist/main.js",
     "serve": "NODE_ENV=development nodemon",
