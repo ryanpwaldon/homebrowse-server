@@ -12,7 +12,7 @@ export class AuthService {
     private readonly jwtService: JwtService
   ) {}
 
-  private createAccessToken (user: User) {
+  public createAccessToken (user: User) {
     const payload = { email: user.email, sub: user.id }
     return this.jwtService.sign(payload)
   }
@@ -26,11 +26,11 @@ export class AuthService {
   async register(createUserDto: CreateUserDto) {
     createUserDto.password = await bcrypt.hash(createUserDto.password, 10)
     const user = await this.userService.create(createUserDto)
-    return { user, accessToken: this.createAccessToken(user) }
+    return { userProfile: user, accessToken: this.createAccessToken(user) }
   }
 
   login(user: User) {
-    return { user, accessToken: this.createAccessToken(user) }
+    return { userProfile: user, accessToken: this.createAccessToken(user) }
   }
 
 }
