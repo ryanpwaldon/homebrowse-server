@@ -16,8 +16,8 @@ export class DomainAgentsListingsService {
   constructor(config: ConfigService) {
     this.baseUrl = config.get('DOMAIN_URL_BASE')
     this.authUrl = config.get('DOMAIN_URL_AUTH')
-    this.clientId = config.get('DOMAIN_AGENTS_LISTINGS_ID')
-    this.clientSecret = config.get('DOMAIN_AGENTS_LISTINGS_SECRET')
+    this.clientId = config.get('DOMAIN_CLIENT_ID')
+    this.clientSecret = config.get('DOMAIN_CLIENT_SECRET')
   }
 
   async axiosInstance() {

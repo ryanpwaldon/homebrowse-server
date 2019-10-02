@@ -16,8 +16,8 @@ export class DomainPropertiesLocationsService {
   constructor(config: ConfigService) {
     this.baseUrl = config.get('DOMAIN_URL_BASE')
     this.authUrl = config.get('DOMAIN_URL_AUTH')
-    this.clientId = config.get('DOMAIN_PROPERTY_LOCATIONS_ID')
-    this.clientSecret = config.get('DOMAIN_PROPERTY_LOCATIONS_SECRET')
+    this.clientId = config.get('DOMAIN_CLIENT_ID')
+    this.clientSecret = config.get('DOMAIN_CLIENT_SECRET')
   }
 
   async axiosInstance() {
